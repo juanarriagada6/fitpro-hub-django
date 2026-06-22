@@ -102,6 +102,49 @@
         </div>
     </div>
 
+    <div class="container my-5 py-4 border-top border-secondary" id="calculadora">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card bg-black border-secondary text-white p-4 shadow-lg">
+                    <h3 class="text-center text-warning fw-bold mb-3">CALCULA TU IMC</h3>
+                    <p class="text-muted text-center small">Descubre tu estado nutricional al instante. Herramienta de acceso libre.</p>
+                    
+                    <form method="POST" action="#calculadora">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label text-warning fw-bold">Peso (kg):</label>
+                            <input type="number" name="peso" step="0.1" min="1" class="form-control bg-dark text-white border-secondary" placeholder="Ej: 75.5" required>
+                        </div>
+                        <div class="mb-3">
+    <label class="form-label text-warning fw-bold">Altura (centímetros):</label>
+    <input type="number" name="altura" step="1" min="50" max="250" class="form-control bg-dark text-white border-secondary" placeholder="Ej: 175" required>
+</div>
+                        <button type="submit" name="calcular_imc" class="btn btn-warning w-100 fw-bold fs-5">CALCULAR MI IMC</button>
+                    </form>
+
+                    {% if error_mensaje %}
+                        <div class="alert alert-danger mt-3 text-center small fw-bold" role="alert">
+                            {{ error_mensaje }}
+                        </div>
+                    {% endif %}
+
+                    {% if imc %}
+                        <div class="mt-4 p-3 bg-dark border border-warning rounded text-center">
+                            <h4 class="text-white mb-1">Tu IMC es: <span class="text-warning fw-bold fs-2">{{ imc }}</span></h4>
+                            <p class="mb-0 fs-5 fw-bold 
+                                {% if clasificacion == 'Peso normal (Saludable)' %} text-success 
+                                {% elif clasificacion == 'Bajo peso' %} text-info 
+                                {% elif clasificacion == 'Sobrepeso' %} text-warning 
+                                {% else %} text-danger {% endif %}">
+                                Clasificación: {{ clasificacion }}
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="bg-black-custom text-center text-muted py-4 border-top border-secondary mt-5">
         <p class="mb-0">&copy; 2026 FitPro Hub - Sistema de Gestión de Alumnos.</p>
     </footer>

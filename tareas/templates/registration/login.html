@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"><title>Ingresar</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Ingresar - FitPro Hub</title>
+    <style>
+        /* Pequeño ajuste para que los textos generados por {{ form.as_p }} se vean blancos y legibles */
+        .card p, .card label {
+            color: #ffffff !important;
+        }
+    </style>
+</head>
 <body class="bg-dark text-white d-flex align-items-center" style="height: 100vh;">
     <div class="container" style="max-width: 450px;">
         <h2 class="mb-3 text-center text-warning fw-bold">INICIAR SESIÓN</h2>
+        
         <form method="post" class="card p-4 bg-black border-secondary text-white shadow">
             {% csrf_token %} 
             {{ form.as_p }}
             <button type="submit" class="btn btn-warning w-100 fw-bold mt-3">ENTRAR</button>
         </form>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'register' %}" class="text-info text-decoration-none me-3">¿No tienes cuenta? Regístrate</a>
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary btn-sm">Volver al Inicio</a>
+        </div>
     </div>
 </body>
 </html>

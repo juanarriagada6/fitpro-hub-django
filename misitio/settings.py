@@ -117,5 +117,5 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_REDIRECT_URL = 'redireccion_login'
 LOGOUT_REDIRECT_URL = 'index'

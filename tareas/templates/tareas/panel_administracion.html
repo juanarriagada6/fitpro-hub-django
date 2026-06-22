@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Panel de Gestión - FitPro Hub</title>
+    <style>
+        body {
+            background-color: #212529 !important;
+            color: white !important;
+            padding: 3rem !important;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white p-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-warning fw-bold">🏋️ Panel de Gestión - FitPro Hub</h2>
+            <div>
+                <a href="{% url 'crear_rutina' %}" class="btn btn-success fw-bold">+ Nueva Rutina</a>
+                <a href="{% url 'index' %}" class="btn btn-outline-light ms-2">Volver al Inicio</a>
+            </div>
+        </div>
+
+        <div class="card bg-black border-secondary p-3 shadow">
+            <table class="table table-dark table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-warning">Alumno</th>
+                        <th class="text-warning">Título de Rutina</th>
+                        <th class="text-warning">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rutina in rutinas %}
+                    <tr>
+                        <td class="align-middle">{{ rutina.alumno.username }}</td>
+                        <td class="align-middle">{{ rutina.titulo }}</td>
+                        <td>
+                            <a href="{% url 'editar_rutina' rutina.id %}" class="btn btn-sm btn-primary">Editar</a>
+                            <a href="{% url 'eliminar_rutina' rutina.id %}" class="btn btn-sm btn-danger ms-1">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">No hay rutinas creadas todavía.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
